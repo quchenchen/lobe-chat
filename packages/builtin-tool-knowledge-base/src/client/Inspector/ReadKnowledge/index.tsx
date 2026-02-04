@@ -21,7 +21,12 @@ export const ReadKnowledgeInspector = memo<
 >(({ args, partialArgs, isArgumentsStreaming, isLoading, pluginState }) => {
   const { t } = useTranslation('plugin');
 
-  const fileIds = args?.fileIds || partialArgs?.fileIds || [];
+  // Ensure fileIds is always an array - handle case where fileIds might be a non-array object
+  const fileIds = Array.isArray(args?.fileIds)
+    ? args.fileIds
+    : Array.isArray(partialArgs?.fileIds)
+      ? partialArgs.fileIds
+      : [];
   const fileCount = fileIds.length;
   const files = pluginState?.files || [];
   const firstFilename = files[0]?.filename;

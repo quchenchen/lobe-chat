@@ -28,7 +28,12 @@ export const UpdateTodosInspector = memo<
   const { t } = useTranslation('plugin');
 
   const counts = useMemo(() => {
-    const operations = args?.operations || partialArgs?.operations || [];
+    // Ensure operations is always an array - handle case where operations might be a non-array object
+    const operations = Array.isArray(args?.operations)
+      ? args.operations
+      : Array.isArray(partialArgs?.operations)
+        ? partialArgs.operations
+        : [];
     return operations.reduce(
       (acc, op) => {
         switch (op.type) {

@@ -38,7 +38,12 @@ export const ExecTasksInspector = memo<BuiltinInspectorProps<ExecTasksParams, Ex
   ({ args, partialArgs, isArgumentsStreaming }) => {
     const { t } = useTranslation('plugin');
 
-    const tasks = args?.tasks || partialArgs?.tasks || [];
+    // Ensure tasks is always an array - handle case where tasks might be a non-array object
+    const tasks = Array.isArray(args?.tasks)
+      ? args.tasks
+      : Array.isArray(partialArgs?.tasks)
+        ? partialArgs.tasks
+        : [];
     const count = tasks.length;
     const firstTask = tasks[0];
 

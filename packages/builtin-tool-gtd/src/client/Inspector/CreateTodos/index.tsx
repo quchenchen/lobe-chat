@@ -23,8 +23,13 @@ export const CreateTodosInspector = memo<
 >(({ args, partialArgs, isArgumentsStreaming }) => {
   const { t } = useTranslation('plugin');
 
-  const adds = args?.adds || partialArgs?.adds || [];
-  const items = args?.items || [];
+  // Ensure adds is always an array - handle case where adds might be a non-array object
+  const adds = Array.isArray(args?.adds)
+    ? args.adds
+    : Array.isArray(partialArgs?.adds)
+      ? partialArgs.adds
+      : [];
+  const items = Array.isArray(args?.items) ? args.items : [];
   const count = adds.length || items.length;
 
   if (isArgumentsStreaming && count === 0) {

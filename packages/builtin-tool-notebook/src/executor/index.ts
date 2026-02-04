@@ -42,10 +42,15 @@ class NotebookExecutor extends BaseExecutor<typeof NotebookApiName> {
         };
       }
 
+      // Validate required parameters - provide defaults if undefined
+      const content = params.content || '';
+      const description = params.description || params.title || '';
+      const title = params.title || 'Untitled Document';
+
       const document = await notebookService.createDocument({
-        content: params.content,
-        description: params.description,
-        title: params.title,
+        content,
+        description,
+        title,
         topicId: ctx.topicId,
         type: params.type,
       });
@@ -78,6 +83,14 @@ class NotebookExecutor extends BaseExecutor<typeof NotebookApiName> {
     try {
       if (ctx.signal?.aborted) {
         return { stop: true, success: false };
+      }
+
+      // Validate required parameter
+      if (!params.id) {
+        return {
+          content: 'Cannot update document: document id is required',
+          success: false,
+        };
       }
 
       const document = await notebookService.updateDocument(params);
