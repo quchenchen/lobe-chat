@@ -1,5 +1,43 @@
 [
   {
+    "children": {
+      "fixes": ["Fixed in community pluings tab the lobehub skills not display."]
+    },
+    "date": "2026-02-06",
+    "version": "2.1.19"
+  },
+  {
+    "children": {},
+    "date": "2026-02-04",
+    "version": "2.1.18"
+  },
+  {
+    "children": {},
+    "date": "2026-02-04",
+    "version": "2.1.17"
+  },
+  {
+    "children": {
+      "fixes": ["Add the preview publish to market button preview check."]
+    },
+    "date": "2026-02-04",
+    "version": "2.1.16"
+  },
+  {
+    "children": {
+      "fixes": ["Fixed the agents list the show updateAt time error."]
+    },
+    "date": "2026-02-04",
+    "version": "2.1.15"
+  },
+  {
+    "children": {
+      "fixes": ["Fix cannot uncompressed messages."]
+    },
+    "date": "2026-02-04",
+    "version": "2.1.14"
+  },
+  {
     "children": {},
     "date": "2026-02-03",
     "version": "2.1.13"
